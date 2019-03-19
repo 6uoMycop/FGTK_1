@@ -6,12 +6,6 @@
 
 FILE *yyin = NULL;
 
-//void yylvalInit()
-//{
-//    yylval.iNumber = 0;
-//    memset(yylval.iCoeffArr, 0, SIZE);
-//}
-
 int yyerror(char *str)
 {
     printf("Error: \"%s\"\n", str);
@@ -28,7 +22,7 @@ int yylex()
         yylval.iNum = c - '0';
         return (DIGIT);
     }
-    if (c == 'y')
+    if (c == 'x')
     {
         yylval.cVar = c;
         return (VARIABLE);
@@ -47,6 +41,6 @@ int main()
     }
     yyparse();
     fclose(yyin);
-    system("pause");
+    //system("pause");
     return 0;
 }

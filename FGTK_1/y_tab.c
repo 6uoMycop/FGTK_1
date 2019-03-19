@@ -13,7 +13,7 @@
 #define alloca malloc
 #include <Windows.h>
 #define alloca malloc
-#define SIZE 32
+#define SIZE 64
 
 char cVariable = -1;
 
@@ -25,14 +25,14 @@ struct express
 
 void debugOutput(struct express exp, int N)
 {
+#ifdef _DEBUG
     printf("%i:\t", N);
-    /*printf("%c;\t", cVariable);
-    printf("%i;\t", exp.iNumber);*/
     for (int i = 0; i < 7; i++)
     {
         printf("%i\t", exp.iCoeffArr[i]);
     }
     printf("\n");
+#endif
 }
 
 #line 28 "lab1.y"
@@ -64,7 +64,7 @@ yyltype;
 
 
 
-#define	YYFINAL		34
+#define	YYFINAL		48
 #define	YYFLAG		-32768
 #define	YYNTBASE	12
 
@@ -102,7 +102,8 @@ static const char yytranslate[] = { 0,
 #if YYDEBUG != 0
 static const short yyprhs[] = { 0,
      0,     2,     6,    10,    14,    18,    23,    25,    28,    32,
-    37,    39,    42,    46,    53,    55
+    37,    39,    42,    46,    53,    58,    62,    67,    74,    80,
+    87,    89
 };
 
 static const short yyrhs[] = { 13,
@@ -111,15 +112,20 @@ static const short yyrhs[] = { 13,
     11,     0,    14,     0,     6,    14,     0,    14,     7,    13,
      0,     6,    14,     7,    13,     0,     4,     0,     6,     4,
      0,     4,     8,    14,     0,    10,     6,     4,    11,     8,
-    14,     0,     3,     0,    14,     3,     0
+    14,     0,     6,     4,     8,    14,     0,    14,     8,    14,
+     0,     6,    14,     8,    14,     0,    10,     6,    14,    11,
+     8,    14,     0,    10,    13,    11,     8,    14,     0,     6,
+    10,    13,    11,     8,    14,     0,     3,     0,    14,     3,
+     0
 };
 
 #endif
 
 #if YYDEBUG != 0
 static const short yyrline[] = { 0,
-    45,    79,    88,    97,   109,   118,   127,   132,   137,   145,
-   153,   159,   165,   171,   186,   190
+    45,    99,   108,   117,   129,   138,   147,   152,   157,   165,
+   173,   179,   185,   191,   204,   211,   227,   243,   270,   302,
+   340,   344
 };
 
 static const char * const yytname[] = { "$","error","$undefined.","DIGIT",
@@ -130,54 +136,62 @@ static const char * const yytname[] = { "$","error","$undefined.","DIGIT",
 
 static const short yyr1[] = { 0,
     12,    13,    13,    13,    13,    13,    13,    13,    13,    13,
-    13,    13,    13,    13,    14,    14
+    13,    13,    13,    13,    13,    13,    13,    13,    13,    13,
+    14,    14
 };
 
 static const short yyr2[] = { 0,
      1,     3,     3,     3,     3,     4,     1,     2,     3,     4,
-     1,     2,     3,     6,     1,     2
+     1,     2,     3,     6,     4,     3,     4,     6,     5,     6,
+     1,     2
 };
 
 static const short yydefact[] = { 0,
-    15,    11,     0,     0,     1,     7,     0,    12,     0,     8,
-     0,     0,     0,     0,     0,    16,     0,    13,     0,     0,
-    12,     5,     2,     3,     4,     9,     6,    10,     0,     0,
-    14,     0,     0,     0
+    21,    11,     0,     0,     1,     7,     0,    12,     0,     8,
+     0,     0,     0,     0,     0,    22,     0,     0,    13,     0,
+     0,     0,     0,    12,     8,     5,     2,     3,     4,     9,
+    16,    15,     6,    10,    17,     0,     0,     0,     0,     0,
+     0,    19,    20,    14,    18,     0,     0,     0
 };
 
-static const short yydefgoto[] = { 32,
+static const short yydefgoto[] = { 46,
      5,     6
 };
 
-static const short yypact[] = { 13,
--32768,    -7,    22,    18,    38,     2,     0,-32768,    13,     3,
-    26,    28,    13,    13,    13,-32768,    13,     3,    35,    13,
-    -1,-32768,     7,     7,-32768,-32768,-32768,-32768,    12,     0,
-     3,    31,    37,-32768
+static const short yypact[] = { 24,
+-32768,    -5,    40,    36,    56,    52,     2,     6,    24,    -1,
+    44,     5,    24,    24,    24,-32768,    24,     2,    16,     2,
+    46,    24,     2,    21,    -2,    13,    18,    18,-32768,-32768,
+    16,    16,    25,-32768,    16,    33,    37,     2,     2,     2,
+     2,    16,    16,    16,    16,    49,    58,-32768
 };
 
 static const short yypgoto[] = { -32768,
-    -2,    -3
+     9,    -3
 };
 
 
-#define	YYLAST		46
+#define	YYLAST		63
 
 
 static const short yytable[] = { 10,
-     7,    12,     1,    18,    16,    16,    19,    10,    17,    29,
-    23,    24,    25,    15,    26,     1,     2,    28,     3,    30,
-     1,     2,     4,    11,     1,     8,    31,     4,     1,    21,
-    33,     9,    13,    14,    15,     9,    34,     0,    22,    13,
-    14,    15,    13,    14,    15,    27
+    16,    16,     7,    19,     1,    23,    23,    25,    37,    13,
+    14,    15,    12,    20,    31,    26,    32,    21,    16,    35,
+    38,    27,    28,    29,    15,    30,     1,     2,    20,     3,
+    34,    36,    39,     4,    42,    43,    44,    45,     1,     2,
+    40,    11,     1,     8,    41,     4,     1,    24,    47,     9,
+    13,    14,    15,     9,    16,     0,    33,    48,    17,    18,
+    13,    14,    15
 };
 
 static const short yycheck[] = { 3,
-     8,     4,     3,     7,     3,     3,     9,    11,     7,    11,
-    13,    14,    15,     7,    17,     3,     4,    20,     6,     8,
-     3,     4,    10,     6,     3,     4,    30,    10,     3,     4,
-     0,    10,     5,     6,     7,    10,     0,    -1,    11,     5,
-     6,     7,     5,     6,     7,    11
+     3,     3,     8,     7,     3,     8,     8,    11,    11,     5,
+     6,     7,     4,     8,    18,    11,    20,     9,     3,    23,
+     8,    13,    14,    15,     7,    17,     3,     4,     8,     6,
+    22,    11,     8,    10,    38,    39,    40,    41,     3,     4,
+     8,     6,     3,     4,     8,    10,     3,     4,     0,    10,
+     5,     6,     7,    10,     3,    -1,    11,     0,     7,     8,
+     5,     6,     7
 };
 /* -*-C-*-  Note some compilers choke on comments on `#line' lines.  */
 #line 3 "bison.simple"
@@ -674,39 +688,59 @@ yyreduce:
     case 1:
 #line 46 "lab1.y"
     {
-        int ifFirst = 1;
+        int ifZero = 1;
         for (int i = 0; i < SIZE; i++)
         {
             if (yyvsp[0].stExpr.iCoeffArr[i] != 0)
             {
-                if (yyvsp[0].stExpr.iCoeffArr[i] > 0 && !ifFirst)
+                ifZero = 0;
+                break;
+            }
+        }
+        if (ifZero == 1)
+        {
+            printf("0");
+        }
+        else
+        {
+            int ifFirst = 1;
+            for (int i = 0; i < SIZE; i++)
+            {
+                if (yyvsp[0].stExpr.iCoeffArr[i] != 0)
                 {
-                    printf("+");
-                }
-                if (i == 0 || yyvsp[0].stExpr.iCoeffArr[i] > 1 || yyvsp[0].stExpr.iCoeffArr[i] < -1)
-                {
-                    printf("%i", yyvsp[0].stExpr.iCoeffArr[i]);
-                }
-                if (i > 0 && yyvsp[0].stExpr.iCoeffArr[i] > 1)
-                {
-                    printf("*");
-                }
-                if (i > 0)
-                {
-                    printf("%c", cVariable);
-                    if (i > 1)
+                    if (yyvsp[0].stExpr.iCoeffArr[i] > 0 && !ifFirst)
                     {
-                        printf("^%i", i);
+                        printf("+");
                     }
+                    if (i == 0 || yyvsp[0].stExpr.iCoeffArr[i] > 1 || yyvsp[0].stExpr.iCoeffArr[i] < -1)
+                    {
+                        printf("%i", yyvsp[0].stExpr.iCoeffArr[i]);
+                    }
+                    if (i > 0)
+                    {
+                        if (yyvsp[0].stExpr.iCoeffArr[i] > 1 || yyvsp[0].stExpr.iCoeffArr[i] < -1)
+                        {
+                            printf("*");
+                        }
+                        else if (yyvsp[0].stExpr.iCoeffArr[i] == -1)
+                        {
+                            printf("-");
+                        }
+                        printf("%c", cVariable);
+                        if (i > 1)
+                        {
+                            printf("^%i", i);
+                        }
+                    }
+                    ifFirst = 0;
                 }
-                ifFirst = 0;
             }
         }
         printf("\n");
         ;
         break; }
     case 2:
-#line 80 "lab1.y"
+#line 100 "lab1.y"
     {
         ZeroMemory(yyval.stExpr.iCoeffArr, SIZE);
         for (int i = 0; i < SIZE; i++)
@@ -717,7 +751,7 @@ yyreduce:
         ;
         break; }
     case 3:
-#line 89 "lab1.y"
+#line 109 "lab1.y"
     {
         ZeroMemory(yyval.stExpr.iCoeffArr, SIZE);
         for (int i = 0; i < SIZE; i++)
@@ -728,12 +762,12 @@ yyreduce:
         ;
         break; }
     case 4:
-#line 98 "lab1.y"
+#line 118 "lab1.y"
     {
         ZeroMemory(yyval.stExpr.iCoeffArr, SIZE);
-        for (int i = 0; i < SIZE; i++)
+        for (int i = 0; i < SIZE / 2; i++)
         {
-            for (int j = 0; j < SIZE; j++)
+            for (int j = 0; j < SIZE / 2; j++)
             {
                 yyval.stExpr.iCoeffArr[i + j] += yyvsp[-2].stExpr.iCoeffArr[i] * yyvsp[0].stExpr.iCoeffArr[j];
             }
@@ -742,7 +776,7 @@ yyreduce:
         ;
         break; }
     case 5:
-#line 110 "lab1.y"
+#line 130 "lab1.y"
     {
         ZeroMemory(yyval.stExpr.iCoeffArr, SIZE);
         for (int i = 0; i < SIZE; i++)
@@ -753,7 +787,7 @@ yyreduce:
         ;
         break; }
     case 6:
-#line 119 "lab1.y"
+#line 139 "lab1.y"
     {
         ZeroMemory(yyval.stExpr.iCoeffArr, SIZE);
         for (int i = 0; i < SIZE; i++)
@@ -764,21 +798,21 @@ yyreduce:
         ;
         break; }
     case 7:
-#line 128 "lab1.y"
+#line 148 "lab1.y"
     {
         yyval.stExpr.iCoeffArr[0] = yyvsp[0].iNum;
         debugOutput(yyval.stExpr, 6);
         ;
         break; }
     case 8:
-#line 133 "lab1.y"
+#line 153 "lab1.y"
     {
         yyval.stExpr.iCoeffArr[0] = -1 * yyvsp[0].iNum;
         debugOutput(yyval.stExpr, 7);
         ;
         break; }
     case 9:
-#line 138 "lab1.y"
+#line 158 "lab1.y"
     {
         for (int i = 0; i < SIZE; i++)
         {
@@ -788,7 +822,7 @@ yyreduce:
         ;
         break; }
     case 10:
-#line 146 "lab1.y"
+#line 166 "lab1.y"
     {
         for (int i = 0; i < SIZE; i++)
         {
@@ -798,7 +832,7 @@ yyreduce:
         ;
         break; }
     case 11:
-#line 154 "lab1.y"
+#line 174 "lab1.y"
     {
         yyval.stExpr.iCoeffArr[1] = 1;
         cVariable = yyvsp[0].cVar;
@@ -806,7 +840,7 @@ yyreduce:
         ;
         break; }
     case 12:
-#line 160 "lab1.y"
+#line 180 "lab1.y"
     {
         yyval.stExpr.iCoeffArr[1] = -1;
         cVariable = yyvsp[0].cVar;
@@ -814,7 +848,7 @@ yyreduce:
         ;
         break; }
     case 13:
-#line 166 "lab1.y"
+#line 186 "lab1.y"
     {
         yyval.stExpr.iCoeffArr[yyvsp[0].iNum] = 1;
         cVariable = yyvsp[-2].cVar;
@@ -822,7 +856,7 @@ yyreduce:
         ;
         break; }
     case 14:
-#line 172 "lab1.y"
+#line 192 "lab1.y"
     {
         if (yyvsp[0].iNum % 2 == 0)
         {
@@ -837,13 +871,158 @@ yyreduce:
         ;
         break; }
     case 15:
-#line 187 "lab1.y"
+#line 205 "lab1.y"
+    {
+        yyval.stExpr.iCoeffArr[yyvsp[0].iNum] = -1;
+        cVariable = yyvsp[-2].cVar;
+        debugOutput(yyval.stExpr, 14);
+        ;
+        break; }
+    case 16:
+#line 212 "lab1.y"
+    {
+        if (yyvsp[0].iNum == 0)
+        {
+            yyval.stExpr.iCoeffArr[0] = 1;
+        }
+        else
+        {
+            yyval.stExpr.iCoeffArr[0] = yyvsp[-2].iNum;
+            for (int i = 0; i < yyvsp[0].iNum - 1; i++)
+            {
+                yyval.stExpr.iCoeffArr[0] *= yyvsp[-2].iNum;
+            }
+        }
+        debugOutput(yyval.stExpr, 15);
+        ;
+        break; }
+    case 17:
+#line 228 "lab1.y"
+    {
+        if (yyvsp[0].iNum == 0)
+        {
+            yyval.stExpr.iCoeffArr[0] = -1;
+        }
+        else
+        {
+            yyval.stExpr.iCoeffArr[0] = -1 * yyvsp[-2].iNum;
+            for (int i = 0; i < yyvsp[0].iNum - 1; i++)
+            {
+                yyval.stExpr.iCoeffArr[0] *= yyvsp[-2].iNum;
+            }
+        }
+        debugOutput(yyval.stExpr, 16);
+        ;
+        break; }
+    case 18:
+#line 244 "lab1.y"
+    {
+        if (yyvsp[0].iNum == 0)
+        {
+            yyval.stExpr.iCoeffArr[0] = 1;
+        }
+        else
+        {
+            if (yyvsp[0].iNum % 2 == 0)
+            {
+                yyval.stExpr.iCoeffArr[0] = yyvsp[-3].iNum;
+                for (int i = 0; i < yyvsp[0].iNum - 1; i++)
+                {
+                    yyval.stExpr.iCoeffArr[0] *= yyvsp[-3].iNum;
+                }
+            }
+            else
+            {
+                yyval.stExpr.iCoeffArr[0] = -1 * yyvsp[-3].iNum;
+                for (int i = 0; i < yyvsp[0].iNum - 1; i++)
+                {
+                    yyval.stExpr.iCoeffArr[0] *= yyvsp[-3].iNum;
+                }
+            }
+        }
+        debugOutput(yyval.stExpr, 17);
+        ;
+        break; }
+    case 19:
+#line 271 "lab1.y"
+    {
+        ZeroMemory(yyval.stExpr.iCoeffArr, SIZE);
+        int iTmp[SIZE] = { 0 };
+        if (yyvsp[0].iNum == 0)
+        {
+            yyval.stExpr.iCoeffArr[0] = 1;
+        }
+        else
+        {
+            for (int i = 0; i < SIZE; i++)
+            {
+                yyval.stExpr.iCoeffArr[i] = yyvsp[-3].stExpr.iCoeffArr[i];
+            }
+            for (int n = 0; n < yyvsp[0].iNum - 1; n++)
+            {
+                for (int i = 0; i < SIZE; i++)
+                {
+                    iTmp[i] = yyval.stExpr.iCoeffArr[i];
+                    yyval.stExpr.iCoeffArr[i] = 0;
+                }
+                for (int i = 0; i < SIZE / 2; i++)
+                {
+                    for (int j = 0; j < SIZE / 2; j++)
+                    {
+                        yyval.stExpr.iCoeffArr[i + j] += iTmp[i] * yyvsp[-3].stExpr.iCoeffArr[j];
+                    }
+                }
+            }
+        }
+        debugOutput(yyval.stExpr, 18);
+        ;
+        break; }
+    case 20:
+#line 303 "lab1.y"
+    {
+        ZeroMemory(yyval.stExpr.iCoeffArr, SIZE);
+        int iTmp[SIZE] = { 0 };
+        if (yyvsp[0].iNum == 0)
+        {
+            yyval.stExpr.iCoeffArr[0] = -1;
+        }
+        else
+        {
+            for (int i = 0; i < SIZE; i++)
+            {
+                yyval.stExpr.iCoeffArr[i] = yyvsp[-3].stExpr.iCoeffArr[i];
+            }
+            for (int n = 0; n < yyvsp[0].iNum - 1; n++)
+            {
+                for (int i = 0; i < SIZE; i++)
+                {
+                    iTmp[i] = yyval.stExpr.iCoeffArr[i];
+                    yyval.stExpr.iCoeffArr[i] = 0;
+                }
+                for (int i = 0; i < SIZE / 2; i++)
+                {
+                    for (int j = 0; j < SIZE / 2; j++)
+                    {
+                        yyval.stExpr.iCoeffArr[i + j] += iTmp[i] * yyvsp[-3].stExpr.iCoeffArr[j];
+                    }
+                }
+            }
+            for (int i = 0; i < SIZE; i++)
+            {
+                yyval.stExpr.iCoeffArr[i] *= -1;
+            }
+        }
+        debugOutput(yyval.stExpr, 19);
+        ;
+        break; }
+    case 21:
+#line 341 "lab1.y"
     {
         yyval.iNum = yyvsp[0].iNum;
         ;
         break; }
-    case 16:
-#line 191 "lab1.y"
+    case 22:
+#line 345 "lab1.y"
     {
         yyval.iNum = yyvsp[-1].iNum * 10 + yyvsp[0].iNum;
         ;
@@ -1046,4 +1225,4 @@ yyerrhandle:
     yystate = yyn;
     goto yynewstate;
 }
-#line 195 "lab1.y"
+#line 349 "lab1.y"

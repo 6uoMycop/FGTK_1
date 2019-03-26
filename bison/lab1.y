@@ -207,7 +207,6 @@ expr    :   expr '+' expr                                                     /*
                 cVariable = $2;
                 debugOutput($$, 14);
             }
-		/*NEW*/
         |   number '^' number                                                /*15*/
             {
 				if($3 == 0)
@@ -335,6 +334,18 @@ expr    :   expr '+' expr                                                     /*
 				}
                 debugOutput($$, 19);
             }
+		/*NEW*/
+		|	'(' '-' number ')'                               %prec UMINUS    /*20*/
+            {
+                $$.iCoeffArr[0] = -1 * $3;
+                debugOutput($$, 20);
+			}
+		|	'(' '-' VARIABLE ')'                             %prec UMINUS    /*21*/
+            {
+                $$.iCoeffArr[1] = -1;
+                cVariable = $3;
+                debugOutput($$, 21);
+			}
         ;
 
 number  :   DIGIT
